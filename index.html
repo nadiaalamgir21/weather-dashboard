@@ -1,13 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="assets/css/main.css"/>
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Satisfy|Domine&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body>
+    <nav class="navbar">Weather Dashboard</nav>
+
+    <section class="content">
+      <div class="search-area">
+        <h2>Search for a city:</h2>
+        <input class="search-bar" />
+        <button class="search-btn">Search</button>
+
+        <hr class="under-line" />
+      </div>
+
+      <div class="info-area">
+        <div class="current-day-weather">
+          
+ 
+        </div>
+
+        <div class="future-weather">
+          <h2>5-Day Forecast:</h2>
+
+          <div class="weather-cards-wrapper">
+            <div>
+              <h5>Temp 61.11 F</h5>
+              <p>Wind 4.61 MPH,</p>
+              <p>Humidity 87%</p>
+            </div>
+
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="assets/js/script.js"></script>
-</body>
+  </body>
 </html>
