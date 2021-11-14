@@ -4,12 +4,12 @@ let url1 = `https://api.openweathermap.org/data/2.5/weather?q=${area}&APPID=${ap
 let data = null
 let futureData = null
 
+// calls the first api which fetch the searched city weather
 function callFirstAPI(url) {
   let whenDataArrives = function (response) {
     response.json().then((dataFromApi) => {
-      console.log(dataFromApi)
       data = dataFromApi
-      displayOnScreen()
+      printSearchedCity()
       fetchFutureWeather(dataFromApi)
       saveCity(dataFromApi.name)
     })
@@ -17,15 +17,11 @@ function callFirstAPI(url) {
   fetch(url).then(whenDataArrives)
 }
 
-$(document).ready(() => {
-  getStoredCities()
-  callFirstAPI(url1)
-})
-
-function displayOnScreen() {
+//this function displays the fetched city weather details onto the screen with help of jquery html function
+function printSearchedCity() {
   $(".current-day-weather").html(
-    ` <h2>${data.name}</h2>
-    <h5>${moment.unix(data.dt).format("DD/MM/YYYY")}</h5>
+    `<h2>${data.name}</h2>
+        <h5>${moment.unix(data.dt).format("DD/MM/YYYY")}</h5>
         <p><img src="http://openweathermap.org/img/w/${
           data.weather[0].icon
         }.png"</img></p>
@@ -36,16 +32,13 @@ function displayOnScreen() {
   )
 }
 
-//todo next api main send the long and lat data to the second api for future weather
-//use booststrap
-
+//this function fetches the the searched city future weather forecast through the help on another API call
 function fetchFutureWeather(EarlierData) {
   let coord = EarlierData.coord
-  let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${coord.lat}&lon=${coord.lon}&exclude=hourly&appid=${apiId}&units=imperial`
+  let urlFuture = `https://api.openweathermap.org/data/2.5/onecall?lat=${coord.lat}&lon=${coord.lon}&exclude=hourly&appid=${apiId}&units=imperial`
 
   let whenDataArrives = function (response) {
     response.json().then((dataFromApi) => {
-      console.log("future data =>", dataFromApi)
       futureData = dataFromApi
       printFutureWeather(dataFromApi)
       if ($(window).width() < 800) {
@@ -53,15 +46,15 @@ function fetchFutureWeather(EarlierData) {
       }
     })
   }
-  fetch(url).then(whenDataArrives)
+  fetch(urlFuture).then(whenDataArrives)
 }
 
+//this function prints the future weather fetched from second API on the screen below current day weather
 function printFutureWeather(data) {
   let daily = data.daily
   let appendStr = ""
 
   for (let i = 0; i < 5; i++) {
-    // console.log( moment.unix(data.daily[i].dt).format('DD/MM/YYYY'))
     appendStr += `<div>
                   <h5>${moment.unix(data.daily[i].dt).format("DD/MM/YYYY")}</h5>
                   <img src="http://openweathermap.org/img/w/${
@@ -76,6 +69,7 @@ function printFutureWeather(data) {
   $(".weather-cards-wrapper").html(appendStr)
 }
 
+//this function extract the text typed in the searchbar and do the API call to the server
 function handleSearch(city) {
   let area = null
   if (city) {
@@ -88,9 +82,8 @@ function handleSearch(city) {
   callFirstAPI(url)
 }
 
+//this function checks for duplicate in cityArr and save the searched city in the localstorage if it is unique 
 function saveCity(city) {
-  console.log("city", city)
-
   let cities = JSON.parse(localStorage.getItem("cityArr"))
   if (cities.indexOf(city) === -1) {
     cities.push(city)
@@ -99,8 +92,7 @@ function saveCity(city) {
   }
 }
 
-// localStorage.setItem('cityArr', JSON.stringify(['Miami', 'Nevada', 'Utah']))
-
+//this function get the stored cities from the localstorarge and prints them below the search bar
 function getStoredCities() {
   if (localStorage.getItem("cityArr") === null) {
     localStorage.setItem("cityArr", JSON.stringify([]))
@@ -116,29 +108,32 @@ function getStoredCities() {
   $(".savedCities").html(str)
 }
 
-//todo initial load main localstorage main stored list ko fetch karna hai DONE
-//and to show on the screen DONE
-//todo when saving localstorage main stored lost main duplication avoid DONE
-//if there is no duplication we will push to the list DONE
-//if the city already exist we will not the push to the list DONE
-//responsiveness done
-
-$(".small-search-screen-enabler").click(showSearchArea)
-
-$(".search-screen-close-button").click(hideSearchArea)
-
+//this function hides the search section
 function hideSearchArea() {
   $(".search-area").hide()
 }
 
+//this function hides the search section
 function showSearchArea() {
   $(".search-area").show()
 }
 
-$(window).resize(function () {
-  if ($(window).width() < 800) {
-    hideSearchArea()
-  } else {
-    showSearchArea()
-  }
+//default function that need to be run setup this app
+function initRun(){
+  $(window).resize(function () {
+    if ($(window).width() < 800) {
+      hideSearchArea()
+    } else {
+      showSearchArea()
+    }
+  })
+  
+  $(".small-search-screen-enabler").click(showSearchArea)
+  $(".search-screen-close-button").click(hideSearchArea)
+}
+
+//run below functions when document is ready to be used
+$(document).ready(() => {
+  initRun()
+  getStoredCities()
 })
