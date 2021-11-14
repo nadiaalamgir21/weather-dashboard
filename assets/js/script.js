@@ -19,7 +19,7 @@ function callFirstAPI(url) {
 
 //this function displays the fetched city weather details onto the screen with help of jquery html function
 function printSearchedCity() {
-  $('.info-area').show()
+  $(".info-area").show()
   $(".current-day-weather").html(
     `<h2>${data.name}</h2>
         <h5>${moment.unix(data.dt).format("DD/MM/YYYY")}</h5>
@@ -77,13 +77,14 @@ function handleSearch(city) {
     area = city
   } else {
     area = $("#searchBar").val()
+    if (area === "") return
   }
 
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${area}&APPID=${apiId}&units=imperial`
   callFirstAPI(url)
 }
 
-//this function checks for duplicate in cityArr and save the searched city in the localstorage if it is unique 
+//this function checks for duplicate in cityArr and save the searched city in the localstorage if it is unique
 function saveCity(city) {
   let cities = JSON.parse(localStorage.getItem("cityArr"))
   if (cities.indexOf(city) === -1) {
@@ -120,7 +121,7 @@ function showSearchArea() {
 }
 
 //default function that need to be run setup this app
-function initRun(){
+function initRun() {
   $(window).resize(function () {
     if ($(window).width() < 800) {
       hideSearchArea()
@@ -128,7 +129,7 @@ function initRun(){
       showSearchArea()
     }
   })
-  
+
   $(".small-search-screen-enabler").click(showSearchArea)
   $(".search-screen-close-button").click(hideSearchArea)
 }
@@ -139,5 +140,4 @@ $(document).ready(() => {
   getStoredCities()
 })
 
-
-//todo 
+//todo
