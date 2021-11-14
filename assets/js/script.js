@@ -18,7 +18,6 @@ function callFirstAPI(url) {
 }
 
 $(document).ready(() => {
-
   getStoredCities()
   callFirstAPI(url1)
 })
@@ -49,6 +48,9 @@ function fetchFutureWeather(EarlierData) {
       console.log("future data =>", dataFromApi)
       futureData = dataFromApi
       printFutureWeather(dataFromApi)
+      if ($(window).width() < 800) {
+        hideSearchArea()
+      }
     })
   }
   fetch(url).then(whenDataArrives)
@@ -78,7 +80,7 @@ function handleSearch(city) {
   let area = null
   if (city) {
     area = city
-  }else{
+  } else {
     area = $("#searchBar").val()
   }
 
@@ -89,39 +91,54 @@ function handleSearch(city) {
 function saveCity(city) {
   console.log("city", city)
 
-
-  let cities = JSON.parse(localStorage.getItem('cityArr'))
-  if(cities.indexOf(city) === -1){ 
-  
+  let cities = JSON.parse(localStorage.getItem("cityArr"))
+  if (cities.indexOf(city) === -1) {
     cities.push(city)
-    localStorage.setItem('cityArr', JSON.stringify(cities))
+    localStorage.setItem("cityArr", JSON.stringify(cities))
     getStoredCities()
-   
   }
-  
 }
-
-
 
 // localStorage.setItem('cityArr', JSON.stringify(['Miami', 'Nevada', 'Utah']))
 
 function getStoredCities() {
-  if (localStorage.getItem("cityArr") === null){
-    localStorage.setItem('cityArr', JSON.stringify([]))
+  if (localStorage.getItem("cityArr") === null) {
+    localStorage.setItem("cityArr", JSON.stringify([]))
     return
-  } 
+  }
   let cities = JSON.parse(localStorage.getItem("cityArr"))
 
   let str = ""
   for (let i = 0; i < cities.length; i++) {
-    str += `<button class="search-btn" onclick="handleSearch('${cities[i]}')">${cities[i]}</button>`
+    str += `<button class="search-btn stored-city-style" onclick="handleSearch('${cities[i]}')">${cities[i]}</button>`
   }
-  
+
   $(".savedCities").html(str)
 }
 
 //todo initial load main localstorage main stored list ko fetch karna hai DONE
 //and to show on the screen DONE
-//todo when saving localstorage main stored lost main duplication avoid
-//if there is no duplication we will push to the list
-//if the city already exist we will not the push to the list
+//todo when saving localstorage main stored lost main duplication avoid DONE
+//if there is no duplication we will push to the list DONE
+//if the city already exist we will not the push to the list DONE
+//responsiveness done
+
+$(".small-search-screen-enabler").click(showSearchArea)
+
+$(".search-screen-close-button").click(hideSearchArea)
+
+function hideSearchArea() {
+  $(".search-area").hide()
+}
+
+function showSearchArea() {
+  $(".search-area").show()
+}
+
+$(window).resize(function () {
+  if ($(window).width() < 800) {
+    hideSearchArea()
+  } else {
+    showSearchArea()
+  }
+})

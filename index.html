@@ -23,29 +23,38 @@
   </head>
   <body>
     <nav class="navbar">
-      <button class="small-screen-enabler">Search show</button>Weather Dashboard</nav>
+      <button class="small-search-screen-enabler">
+        <i class="fas fa-search"></i></button
+      ><h1>Weather Dashboard</h1>
+    </nav>
 
-    <section class="content">
-      <div class="search-area">
-        <h2>Search for a city:</h2>
-        <input class="search-bar" id="searchBar"/>
-        <button class="search-btn" onclick="handleSearch()">Search</button>
+    <div class="container">
+      <section class="content">
+        <div class="search-area">
+          <h2>
+            Search for a city:
+            <button class="search-screen-close-button">
+              <i class="fas fa-times"></i>
+            </button>
+          </h2>
+          <input class="search-bar" id="searchBar" />
+          <button class="search-btn" onclick="handleSearch()">Search</button>
 
-        <hr class="under-line" />
-        <div class="savedCities"></div>
-      </div>
-
-      <div class="info-area">
-        <div class="current-day-weather"> </div>
-          
-        <div class="future-weather">
-          <h2>5-Day Forecast:</h2>
-
-          <div class="weather-cards-wrapper"></div>
-          
+          <hr class="under-line" />
+          <div class="savedCities"></div>
         </div>
-      </div>
-    </section>
+
+        <div class="info-area">
+          <div class="current-day-weather"></div>
+
+          <div class="future-weather">
+            <h2>5-Day Forecast:</h2>
+
+            <div class="weather-cards-wrapper"></div>
+          </div>
+        </div>
+      </section>
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="assets/js/script.js"></script>
