@@ -14,7 +14,6 @@
 
 .content {
   display: flex;
-  justify-content: row;
 }
 
 .search-area {
@@ -63,6 +62,7 @@
 .weather-cards-wrapper {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .weather-cards-wrapper > div {
@@ -74,4 +74,48 @@
 
 .weather-cards-wrapper > div > p {
   font-size: 18px;
+}
+
+.small-screen-enabler{
+  display: none;
+}
+
+@media screen and (min-width: 500px) and (max-width: 800px) {
+  .info-area {
+    width: 100%;
+    text-align: center;
+  }
+
+  .weather-cards-wrapper > div {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .info-area {
+    width: 100%;
+    text-align: center;
+  }
+
+  .search-area {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: white;
+
+  }
+  .search-area h2{
+    text-align: center;
+  }
+
+  .search-show {
+    position: absolute;
+    left: 10px;
+  }
+
+  .weather-cards-wrapper > div {
+    width: 100%;
+  }
 }

@@ -22,38 +22,27 @@
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
   <body>
-    <nav class="navbar">Weather Dashboard</nav>
+    <nav class="navbar">
+      <button class="small-screen-enabler">Search show</button>Weather Dashboard</nav>
 
     <section class="content">
       <div class="search-area">
         <h2>Search for a city:</h2>
-        <input class="search-bar" />
-        <button class="search-btn">Search</button>
+        <input class="search-bar" id="searchBar"/>
+        <button class="search-btn" onclick="handleSearch()">Search</button>
 
         <hr class="under-line" />
+        <div class="savedCities"></div>
       </div>
 
       <div class="info-area">
-        <div class="current-day-weather">
+        <div class="current-day-weather"> </div>
           
- 
-        </div>
-
         <div class="future-weather">
           <h2>5-Day Forecast:</h2>
 
-          <div class="weather-cards-wrapper">
-            <div>
-              <h5>Temp 61.11 F</h5>
-              <p>Wind 4.61 MPH,</p>
-              <p>Humidity 87%</p>
-            </div>
-
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
+          <div class="weather-cards-wrapper"></div>
+          
         </div>
       </div>
     </section>
