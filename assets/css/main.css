@@ -14,6 +14,7 @@
 
 .navbar h1{
   font-size: 24px;
+  font-weight: bold;
 }
 
 .content {
@@ -45,6 +46,7 @@
 
 .info-area {
   width: 70%;
+  display:none;
 }
 
 .current-day-weather {
@@ -98,7 +100,7 @@
 }
 
 .stored-city-style {
-  background: blueviolet;
+  background: aquamarine;
 }
 
 .stored-city-style:hover {
@@ -121,6 +123,7 @@
     height: 100%;
     background: white;
     display: none;
+    padding: 0 10px;
   }
 
   .search-area h2 {
@@ -159,6 +162,7 @@
     height: 100%;
     background: white;
     display: none;
+    padding: 0 10px;
   }
 
   .search-area h2 {

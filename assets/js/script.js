@@ -19,6 +19,7 @@ function callFirstAPI(url) {
 
 //this function displays the fetched city weather details onto the screen with help of jquery html function
 function printSearchedCity() {
+  $('.info-area').show()
   $(".current-day-weather").html(
     `<h2>${data.name}</h2>
         <h5>${moment.unix(data.dt).format("DD/MM/YYYY")}</h5>
@@ -137,3 +138,6 @@ $(document).ready(() => {
   initRun()
   getStoredCities()
 })
+
+
+//todo 
