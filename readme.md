@@ -1,7 +1,7 @@
 
 # Weather dashboard
 
-This is weather dashboard designed to show current day weather and future 5 days  .I used bootstrap and Jquery in addition to help optimize my code and learned a lot in the process as well. I have also made this project responsive.
+This is weather dashboard designed to show current day weather and future 5 days. I used bootstrap and Jquery in addition to help optimize my code and learned a lot in the process as well. I have also made this project responsive.
 
 ## Link to application
 https://nadiaalamgir21.github.io/weather-dashboard/
